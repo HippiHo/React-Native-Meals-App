@@ -3,15 +3,23 @@ import { FlatList } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import { CategoryGridTile } from "../components/CategoryGridTile";
 
-// This function can be defined outside the code because it doesn't need to get recreated
+const CategoriesScreen = ({ navigation }) => {
+  const pressHandler = () => {
+    navigation.navigate("Meals");
+  };
 
-const renderCategoryItem = (itemData) => {
-  return (
-    <CategoryGridTile title={itemData.item.title} color={itemData.item.color} />
-  );
-};
+  // This function can be defined outside the code because it doesn't need to get recreated
 
-const CategoriesScreen = () => {
+  const renderCategoryItem = (itemData) => {
+    return (
+      <CategoryGridTile
+        title={itemData.item.title}
+        color={itemData.item.color}
+        onPress={pressHandler}
+      />
+    );
+  };
+
   return (
     <FlatList
       data={CATEGORIES}
